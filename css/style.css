@@ -28,12 +28,94 @@ body{
 
 }
 a{
-	color: #0099cc;
+	
 	display:inline-block;
 }
 #govno{
 	margin-top: 555px;
 	 
+}
+#logo{
+	position: absolute;
+	width: 370px;
+	height: 100px;
+	top: 30px;
+	left: 40px;
+}
+#logo-com{
+	position: absolute;
+	display: inline-block;
+	font-size: 42.5px;
+	font-weight: bold;
+	top: 10px;
+	color:#333;
+
+
+}
+#logo-about{
+	display: block;
+	font-weight: bold;
+	color: #333;
+	margin-left: -2px;
+	font-size: 15.8px;
+
+}
+#call{
+	position: absolute;
+
+	top: 30px;
+	right: 20px;
+	
+
+}
+#call-cont{
+	width: 380px;
+	height: 65px;
+	border-radius: 15px;
+	background-color: #233c46;
+	background: rgba(35, 60, 70, 0.66);
+}
+
+#call-cont  p{
+	
+	color: #fff;
+	
+}
+#call-cont > p{
+	font-weight: bold;
+	margin-left: 10px;
+	line-height: 68px;
+	font-size: 27px;
+}
+
+#call-cont > a{
+	position: absolute;
+	right: 5px;
+	top: 15px;
+	display: inline-block;
+	width: 120px;
+	height: 55px;
+	background:#efa106;
+	border-radius: 10px;
+	text-decoration: none;
+	
+}
+#call-cont > a > p{
+	line-height: 20px;
+	margin-top: 8px;
+	font-weight: bold;
+	font-size: 20px;
+	text-align: center;
+	color: #ffffff;
+
+}
+#call-cont {
+
+	margin-top: 10px;
+	font-weight: bold;
+	font-size: 70px
+	color: #ffffff;
+
 }
 #men{
 	height: 50px;
@@ -431,6 +513,9 @@ padding-bottom: 40px;
  	font-weight: bold;
 
 
+ }
+ .mail > a{
+ 	color: #0099cc;
  }
  .office{
  	margin-top: 14px;
