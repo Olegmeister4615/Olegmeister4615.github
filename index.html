@@ -2,21 +2,49 @@
 <html>
 <head>
 <meta charset="utf-8">
-<link rel="stylesheet" type=" text/css" href="style.css">
+<link rel="stylesheet" type=" text/css" href="css/style.css">
 
+<script type="text/javascript" src="js/jquery.1.7.1.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			// Фикмированная шапка при скролле
+			$("#menu").removeClass("default");
+			$(window).scroll(function(){
+				if ($(this).scrollTop() > 550) {
+					$("#menu").addClass("default").fadeIn('fast');
+				} else {
+					$("#menu").removeClass("default").fadeIn('fast');
+				};
+			});
+
+			// Плавный скролл по якорям
+			$('a[href^="#"]').click(function () { 
+			    elementClick = $(this).attr("href");
+				destination = $(elementClick).offset().top;
+				if($.browser.safari){
+				$('body').animate( { scrollTop: destination }, 1000 );
+				} else {
+			    	$('html').animate( { scrollTop: destination }, 1000 );
+				}
+				return false;
+		   });
+		});
+	</script>
 </head>
 <body>
     <div id="govno">
+    <div id="men">
 	  <div id="menu">
 		<ul>
 			<li><a href="#">Главная</a></li>
-			<li><a href="#">Продукция</a></li>
-			<li><a href="#">О компании</a></li>
-			<li><a href="#">Доставка</a></li>
-			<li><a href="#">Сертификаты</a></li>
-			<li><a href="#">Контакты</a></li>
+			<li><a href="#second">Продукция</a></li>
+			<li><a href="#company1">О компании</a></li>
+			<li><a href="#deliver">Доставка</a></li>
+			<li><a href="#sertificat">Сертификаты</a></li>
+			<li><a href="#footer">Контакты</a></li>
 		</ul>
 	  </div>
+	</div>
     </div>
     <div id="second">
       
@@ -42,17 +70,17 @@
 
     <div id="main1">
       <div class="main">
-        <img src="image/1.png">
+        <img src="image/01_sheben_granit_5-20.jpg">
         <table >
         	<tr class=p1 ><td width="220px" colspan="2">Щебень рядовой</td></tr>
         	<tr class=p2><td colspan="2">фр. 5-20</td></tr>
         	<tr class=p3><td align="right">Лещадность:</td><td align="left"> 9898</td></tr>
-        	<tr class=p3><td align="right" width="145px">Насыпная плотность:</td><td align="left"> 9898</td></tr>
+        	<tr class=p3><td align="right" width="145px">Насыпная плотность:</td><td align="left"> 1.35</td></tr>
         </table>
         
         <p> от <font size="7em">320</font> р/т</p>
 
-        <a href="#"> Заказать</a>
+        <a href="#order"> Заказать</a>
         
     	
       </div>
@@ -61,53 +89,53 @@
         <img src="image/1.png">
         <table >
         	<tr class=p1 ><td width="220px" colspan="2">Щебень рядовой</td></tr>
-        	<tr class=p2><td colspan="2">фр. 5-20</td></tr>
+        	<tr class=p2><td colspan="2">фр. 20-40</td></tr>
         	<tr class=p3><td align="right">Лещадность:</td><td align="left"> 9898</td></tr>
-        	<tr class=p3><td align="right" width="145px">Насыпная плотность:</td><td align="left"> 9898</td></tr>
+        	<tr class=p3><td align="right" width="145px">Насыпная плотность:</td><td align="left"> 1.30</td></tr>
         </table>
         
-        <p> от <font size="7em">320</font> р/т</p>
+        <p> от <font size="7em">240</font> р/т</p>
 
-        <a href="#"> Заказать</a>
+        <a href="#order"> Заказать</a>
         
     	
       </div>
     </div>
     <div id="main2">
       <div class="main">
-        <img src="image/1.png">
+        <img src="image/sheben_40-70_1.jpg">
         <table >
         	<tr class=p1 ><td width="220px" colspan="2">Щебень рядовой</td></tr>
-        	<tr class=p2><td colspan="2">фр. 5-20</td></tr>
+        	<tr class=p2><td colspan="2">фр. 40-70</td></tr>
         	<tr class=p3><td align="right">Лещадность:</td><td align="left"> 9898</td></tr>
-        	<tr class=p3><td align="right" width="145px">Насыпная плотность:</td><td align="left"> 9898</td></tr>
+        	<tr class=p3><td align="right" width="145px">Насыпная плотность:</td><td align="left"> 1.30</td></tr>
         </table>
         
-        <p> от <font size="7em">320</font> р/т</p>
+        <p> от <font size="7em">250</font> р/т</p>
 
-        <a href="#"> Заказать</a>
+        <a href="#order"> Заказать</a>
         
     	
       </div>
       
       <div class="main">
-        <img src="image/1.png">
+        <img src="image/otsev1.jpg">
         <table >
-        	<tr class=p1 ><td width="220px" colspan="2">Щебень рядовой</td></tr>
-        	<tr class=p2><td colspan="2">фр. 5-20</td></tr>
+        	<tr class=p1 ><td width="220px" colspan="2"> Отсев </td></tr>
+        	<tr class=p2><td colspan="2">фр. 0-5</td></tr>
         	<tr class=p3><td align="right">Лещадность:</td><td align="left"> 9898</td></tr>
-        	<tr class=p3><td align="right" width="145px">Насыпная плотность:</td><td align="left"> 9898</td></tr>
+        	<tr class=p3><td align="right" width="145px">Насыпная плотность:</td><td align="left"> 1.50</td></tr>
         </table>
         
-        <p> от <font size="7em">320</font> р/т</p>
+        <p> от <font size="7em">220</font> р/т</p>
 
-        <a href="#"> Заказать</a>
+        <a href="#order"> Заказать</a>
         
     	
       </div>
-    </div>
-	    <div class="company">
-	    	<p>О Компании</p>
+    </div >
+	    <div id="company1" class="company">
+	    	<p >О Компании</p>
 	    </div>
 	    <div id="txt">
 	    	<div id="txtt">
@@ -121,13 +149,13 @@
 	    	</div>
 
 	    </div>
-	    <div class="company">
+	    <div id="sertificat" class="company">
 	    	<p>Наши сертификаты</p>
 	    </div>
 	    <div style="width: 900px; margin: 0 auto;">
 	    	<img src="image/licence.png">
 	    </div>
-    <div class="company">
+    <div id="deliver" class="company">
     	<p>Доставка</p>
     </div>
     <div id="delivery">
@@ -150,8 +178,8 @@
 	    Для более точного расчета стоимости доставки вы можете обратиться к нашему менеджеру
 	    </p>
 	    </div>
-	    <img src="image/f.png">
-	    <a href="#"> ОТПРАВИТЬ ЗАЯВКУ</a>
+	    <img src="image/f.png" id="order">
+	    <a href="#order"> ОТПРАВИТЬ ЗАЯВКУ</a>
 
 	    </div>
 	    <div id="map">
@@ -165,17 +193,19 @@
 	<div id="footer">
 	<div id="footer1">
 	    	<div id="upfooter">
+	    	<form action="" name="form-2" >
 	    	<div id="container1">
 	    	<p>ЗАКАЖИТЕ ЗВОНОК</p>
-	    	<input type="text" name="" placeholder="Ваше имя*" class="form">
-	    	<input type="text" name="" placeholder="Телефон*"  class="form">
-	    	<textarea cols="auto" rows="3" class="form form2" placeholder="Интересующий вас вопрос"></textarea>	
+	    	<input type="text" name="name" placeholder="Ваше имя*" class="form name" required="1">
+	    	<input type="tel" name="tell" placeholder="Телефон*"  class="form tell" required="1" maxlength="10" minlength="5">
+	    	<textarea cols="auto" rows="3" name="text" class="form form2 text" placeholder="Интересующий вас вопрос"></textarea>	
 	    	<input type="submit" name="" value="ОТПРАВИТЬ"  class="form form1">
 	    	</div>
+	    	</form>
 	    	<div id="container2">
 	    	<p class="tel">+7 (343) 295-15-55</p>
 	    	<p class="tel">+7 (922) 20-20-730</p>
-	    	<p class="mail">e-mail: <a href="#">tdkamen309@gmail.com</a></p>
+	    	<p class="mail">e-mail: <a href="tdkamen309@gmail.com">tdkamen309@gmail.com</a></p>
 	    	<p class="office">Наш офис:<span id="offi"><br>ООО «Торговый дом Камень» г. Екатеринбург, ул. Белинского, 113, оф. 1.</span></p>
 	    		
 	    	</div>	
@@ -190,7 +220,13 @@
     	
 
 
-
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.jgrowl.js"></script>
+<script type="text/javascript" src="js/jquery.arcticmodal.js"></script>
+<script type="text/javascript" src="js/feedback.js"></script>
+<link href="css/jquery.jgrowl.css" rel="stylesheet" type="text/css">
+<link href="css/jquery.arcticmodal.css" rel="stylesheet" type="text/css">
+<link href="css/style.css" rel="stylesheet" type="text/css">
 </body>
 
 </html>
