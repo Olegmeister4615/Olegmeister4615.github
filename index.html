@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <link rel="stylesheet" type=" text/css" href="css/style.css">
+<script src="fancybox/jquery-3.1.1.min.js"></script>
 
-<script type="text/javascript" src="js/jquery.1.7.1.min.js"></script>
-	<script type="text/javascript">
+	<script type="text/javascript" >
 		$(document).ready(function(){
 			// Фикмированная шапка при скролле
 			$("#menu").removeClass("default");
@@ -18,21 +18,99 @@
 			});
 
 			// Плавный скролл по якорям
-			$('a[href^="#"]').click(function () { 
-			    elementClick = $(this).attr("href");
-				destination = $(elementClick).offset().top;
-				if($.browser.safari){
-				$('body').animate( { scrollTop: destination }, 1000 );
-				} else {
-			    	$('html').animate( { scrollTop: destination }, 1000 );
-				}
-				return false;
-		   });
-		});
+			$('a[href*="#"]').bind("click", function(e){
+      var anchor = $(this);
+      $('html, body').stop().animate({
+         scrollTop: $(anchor.attr('href')).offset().top
+      }, 1000);
+      e.preventDefault();
+   });
+   return false;
+});﻿
 	</script>
+<link rel="stylesheet" href="fancybox/jquery.fancybox.css" type="text/css" media="screen">
+<script type="text/javascript" src="fancybox/jquery.fancybox.js"></script>
+	
+	<script>
+        $(document).ready(function() {
+
+	/* This is basic - uses default settings */
+	
+	$(".sert-in-buy").fancybox();
+	
+	/* Using custom settings */
+	
+	$("a#inline").fancybox({
+		'hideOnContentClick': true
+	});
+
+	/* Apply fancybox to multiple items */
+	
+	$("a.group").fancybox({
+		'transitionIn'	:	'elastic',
+		'transitionOut'	:	'elastic',
+		'speedIn'		:	600, 
+		'speedOut'		:	200, 
+		'overlayShow'	:	false
+	});
+	
+});
+        </script>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#go').click(function(){
+			$('input[name="cost"]').val($('input[name="tonn"]').val()*$('input[name="km"]').val()*3);
+			
+			$('input[name="tonn"]').css("display","none");
+			$('input[name="km"]').css("display","none");
+			$('input[name="go"]').css("display","none");
+			$('input[name="cost"]').css("display","inline-block");
+			$('#again').css("display","block");
+			$('label[for="cost"]').css("display","inline-block");
+
+		});
+	});
+</script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#again').click(function(){
+			$('input[name="tonn"]').val('none');
+			$('input[name="km"]').val('none');
+			$('input[name="km"]').css("display","inline-block");
+			
+			$('input[name="tonn"]').css("display","inline-block");
+			$('input[name="km"]').css("display","inline-block");
+			$('input[name="go"]').css("display","block");
+			$('input[name="cost"]').css("display","none");
+			$('#again').css("display","none");
+			$('label[for="cost"]').css("display","none");
+
+		});
+	});
+
+</script>
+<script type="text/javascript">
+	$(document).ready(function() {
+
+	$("#form-person").submit(function() {
+		$.ajax({
+			type: "POST",
+			url: "mail.php",
+			data: $(this).serialize()
+		}).done(function() {
+			$(this).find("input").val("");
+			alert("Спасибо за заявку! Скоро мы с вами свяжемся.");
+			$("#form-person").trigger("reset");
+		});
+		return false;
+	});
+	
+});
+</script>
 </head>
 <body>
-    <div id="govno">
+    <div id="heading">
     <div id="logo">
     <img src="image/logo.png">
     <p id="logo-com">ТД «Камень»</p>
@@ -41,7 +119,7 @@
     <div id="call">
     <div id="call-cont">
     	<p>+7 (922) 20-20-730</p>
-    	<a href="#footer"> 
+    	<a href="#order"> 
     		
     		<p id="cl1">ЗАКАЗАТЬ ЗВОНОК</p> 
     		 
@@ -49,7 +127,7 @@
     	
     </div>	
     </div>
-    <div id="men">
+    <div id="men" class="shadow">
 	  <div id="menu">
 		<ul>
 			<li><a href="#logo">Главная</a></li>
@@ -62,22 +140,22 @@
 	  </div>
 	</div>
     </div>
-    <div id="second">
+    <div id="second" class="shadow">
       
 		<ul>
-			<li><img src="image/placeholder.png">
+			<li><img src="image/gps.svg">
 			    <p class=item>Собственный карьер</p>
 			    <p class=item2>Карьер в поселке Крутиха</p>
 			</li>
-			<li><img src="image/empty-shopping-cart.png">
+			<li><img src="image/empty-shopping-cart.svg">
 			    <p class=item>Наличие</p>
 			    <p class=item2>Более 100тыс. тонн щебня</p>
 			</li>
-			<li><img src="image/men-couple.png">
+			<li><img src="image/men-couple.svg">
 			    <p class=item>Надежность</p>
 			    <p class=item2>Отвечаем за каждый этап поставки</p>
 			</li>
-			<li><img src="image/ok-appproval-acceptance.png">
+			<li><img src="image/ok-appproval-acceptance.svg">
 			    <p class=item>Качество</p>
 			    <p class=item2>Вся продукция сертифицирована</p>
 			</li>
@@ -90,14 +168,18 @@
         <table >
         	<tr class=p1 ><td width="220px" colspan="2">Щебень рядовой</td></tr>
         	<tr class=p2><td colspan="2">фр. 5-20</td></tr>
-        	<tr class=p3><td align="right">Лещадность:</td><td align="left"> 9898</td></tr>
-        	<tr class=p3><td align="right" width="145px">Насыпная плотность:</td><td align="left"> 1.35</td></tr>
+        	<tr class=p3><td align="right">Лещадность:</td><td align="left"> 14.7%</td></tr>
+        	<tr class=p3><td align="right" width="145px">Насыпная плотность:</td><td align="left"> 1.37 т/м<sup>3</sup></td></tr>
         </table>
         
-        <p> от <font size="7em">320</font> р/т</p>
-
-        <a href="#order"> Заказать</a>
+        <p> от <font size="7em">300</font> р/т</p>
+		<a  href="image/РИ 5-20.jpg" class="sert-in-buy">
         
+        <span><p class="title-img">РЕЗУЛЬТАТЫ<br>ИСПЫТАНИЙ</p></span>
+        <img src="image/РИ 5-20.jpg" alt="">
+        </a>
+		
+        <a href="#order" class="order"> Заказать</a>
     	
       </div>
       
@@ -106,14 +188,18 @@
         <table >
         	<tr class=p1 ><td width="220px" colspan="2">Щебень рядовой</td></tr>
         	<tr class=p2><td colspan="2">фр. 20-40</td></tr>
-        	<tr class=p3><td align="right">Лещадность:</td><td align="left"> 9898</td></tr>
-        	<tr class=p3><td align="right" width="145px">Насыпная плотность:</td><td align="left"> 1.30</td></tr>
+        	<tr class=p3><td align="right">Лещадность:</td><td align="left"> 13.6%</td></tr>
+        	<tr class=p3><td align="right" width="145px">Насыпная плотность:</td><td align="left"> 1.34 т/м<sup>3</sup></td></tr>
         </table>
         
-        <p> от <font size="7em">240</font> р/т</p>
-
-        <a href="#order"> Заказать</a>
+        <p> от <font size="7em">220</font> р/т</p>
+		<a  href="image/РИ 20-40.jpg" class="sert-in-buy">
         
+        <span><p class="title-img">РЕЗУЛЬТАТЫ<br>ИСПЫТАНИЙ</p></span>
+        <img src="image/РИ 20-40.jpg" alt="">
+        </a>
+		
+        <a href="#order" class="order"> Заказать</a>
     	
       </div>
     </div>
@@ -123,15 +209,18 @@
         <table >
         	<tr class=p1 ><td width="220px" colspan="2">Щебень рядовой</td></tr>
         	<tr class=p2><td colspan="2">фр. 40-70</td></tr>
-        	<tr class=p3><td align="right">Лещадность:</td><td align="left"> 9898</td></tr>
-        	<tr class=p3><td align="right" width="145px">Насыпная плотность:</td><td align="left"> 1.30</td></tr>
+        	<tr class=p3><td align="right">Лещадность:</td><td align="left"> 14.1%</td></tr>
+        	<tr class=p3><td align="right" width="145px">Насыпная плотность:</td><td align="left"> 1.36 т/м<sup>3</sup></td></tr>
         </table>
         
-        <p> от <font size="7em">250</font> р/т</p>
-
-        <a href="#order"> Заказать</a>
+        <p> от <font size="7em">230</font> р/т</p>
+		<a  href="image/РИ 40-70.jpg" class="sert-in-buy">
         
-    	
+        <span><p class="title-img">РЕЗУЛЬТАТЫ<br>ИСПЫТАНИЙ</p></span>
+        <img src="image/РИ 40-70.jpg" alt="">
+        </a>
+		
+        <a href="#order" class="order"> Заказать</a>
       </div>
       
       <div class="main">
@@ -139,23 +228,28 @@
         <table >
         	<tr class=p1 ><td width="220px" colspan="2"> Отсев </td></tr>
         	<tr class=p2><td colspan="2">фр. 0-5</td></tr>
-        	<tr class=p3><td align="right">Лещадность:</td><td align="left"> 9898</td></tr>
-        	<tr class=p3><td align="right" width="145px">Насыпная плотность:</td><td align="left"> 1.50</td></tr>
+        	<tr class=p3><td align="right">Лещадность:</td><td align="left">14.7%</td></tr>
+        	<tr class=p3><td align="right" width="145px">Насыпная плотность:</td><td align="left"> 1.37 т/м<sup>3</sup></td></tr>
         </table>
         
-        <p> от <font size="7em">220</font> р/т</p>
-
-        <a href="#order"> Заказать</a>
+        <p> от <font size="7em">210</font> р/т</p>
+        <a  href="image/РИ Отсев 0-5.jpg" class="sert-in-buy">
+        
+        <span><p class="title-img">РЕЗУЛЬТАТЫ<br>ИСПЫТАНИЙ</p></span>
+        <img src="image/РИ Отсев 0-5.jpg" alt="">
+        </a>
+		
+        <a href="#order" class="order"> Заказать</a>
         
     	
       </div>
     </div >
-	    <div id="company1" class="company">
-	    	<p >О Компании</p>
+	    <div id="company1" class="company shadow">
+	    	<h1>О Компании</h1>
 	    </div>
 	    <div id="txt">
 	    	<div id="txtt">
-	    		<p>ООО ТД "Камень" является крупным производителем и поставщиком гранитного щебня, а также сопутствующих материалов собственного производства. Мы предлагаем покупателю высококачественную продукцию с доставкой на большегрузных автомобилях по Свердловской области с соблюдением всех сроков. Доставка осуществляется в течение 24 часов с момента оформления договора на заказ.</p>
+	    		<p>ООО ТД "Камень" является крупным производителем и поставщиком гранитного щебня, а также сопутствующих материалов собственного производства. Мы предлагаем покупателю высококачественную продукцию с доставкой на большегрузных автомобилях по Свердловской области и по всему УрФо с соблюдением всех сроков. Доставка осуществляется в течение 24 часов с момента оплаты.</p>
 	    		<p>Мы добываем щебень в собственном карьере и предоставляем максимально низкие цены на его приобретение.</p>
 	    		<p>Основной нашей целью является снабжение вашего объекта высококачественным строительным материалом в кратчайшие строки.</p>
 	    	</div>
@@ -166,14 +260,19 @@
 
 	    </div>
 	    
-	    <div id="sertificat" class="company">
-	    	<p>Наши сертификаты</p>
+	    <div id="sertificat" class="company shadow">
+	    	<h1>Наши сертификаты</h1>
 	    </div>
-	    <div style="width: 900px; margin: 0 auto;">
-	    	<img src="image/licence.png">
+	    <div  style="width: 780px; height: 230px; margin: 0 auto; padding-top: 20px;"id="sert">
+	    	
+	    	<a rel="group" class="group" href="image/sert1.jpg"><img src="image/sert1.jpg"  style="width: 150px"></a>
+			<a rel="group" class="group" href="image/РИ 5-20.jpg"><img src="image/РИ 5-20.jpg" style="width: 150px; vertical-align: 200%;"></a>
+			<a rel="group" class="group" href="image/РИ 20-40.jpg"><img src="image/РИ 20-40.jpg" style="width: 150px; vertical-align: 200%;"></a>
+			<a rel="group" class="group" href="image/РИ 40-70.jpg"><img src="image/РИ 40-70.jpg" style="width: 150px; vertical-align: 200%;"></a>
+			<a rel="group" class="group" href="image/РИ Отсев 0-5.jpg"><img src="image/РИ Отсев 0-5.jpg" style="width: 150px; vertical-align: 200%;"></a>
 	    </div>
-    <div id="deliver" class="company">
-    	<p>Доставка</p>
+    <div id="deliver" class="company shadow">
+    	<h1>Доставка</h1>
     </div>
     <div id="delivery">
 	    <div id="bar">
@@ -182,15 +281,23 @@
 	    	<li>тонарами (40тонн)</li>
 	    	<li>4х-осными самосвалами (27тонн)</li>
 	    </ul>
-		    <div id="deliv">
+		    <form id="deliv">
+		    
 		    	<div>
-		    		<input type="text" name="tonn" placeholder ="Количество(тонны)">
-		    		<input type="text" name="tonn" placeholder ="Расстояние(км)">
+		    		<input type="number" name="tonn" placeholder ="Количество(тонны)" required="1" min="30">
+		    		<input type="number" name="km" placeholder ="Расстояние(км)" required="1">
+		    		
+		    		<input type="text" name="cost" id="cost" style="display: none;">
+		    		<label for="cost" style="display: none;">Рублей </label>
 		    	</div>
-		    	<input type="submit" name="go" value="РАСЧИТАТЬ ДОСТАВКУ">
+		    	<input type="button" name="go" id="go" value="РАСЧИТАТЬ ДОСТАВКУ" >
+		    	<input type="button" name="again" id="again" value="РАСЧИТАТЬ ЕЩЕ РАЗ" style="display: none;" >
+
 		    	<div><p>*Минимальная отгрузка 30 тонн.</p></div>
-		    </div>
+		    </form>
+		    
 	    <div id="tx">
+	    <p>На стоимость доставки также влияет объем заказа<hr></p>
 	    <p>
 	    Для более точного расчета стоимости доставки вы можете обратиться к нашему менеджеру
 	    </p>
@@ -210,7 +317,7 @@
 	<div id="footer">
 	<div id="footer1">
 	    	<div id="upfooter">
-	    	<form action="Olegmeister.9@yandex.ru" name="form-2" >
+	    	<form id="form-person" name="form-2" >
 	    	<div id="container1">
 	    	<p>ЗАКАЖИТЕ ЗВОНОК</p>
 	    	<input type="text" name="name" placeholder="Ваше имя*" class="form name" required="1">
@@ -237,13 +344,8 @@
     	
 
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script type="text/javascript" src="js/jquery.jgrowl.js"></script>
-<script type="text/javascript" src="js/jquery.arcticmodal.js"></script>
-<script type="text/javascript" src="js/feedback.js"></script>
-<link href="css/jquery.jgrowl.css" rel="stylesheet" type="text/css">
-<link href="css/jquery.arcticmodal.css" rel="stylesheet" type="text/css">
-<link href="css/style.css" rel="stylesheet" type="text/css">
+
+
 </body>
 
 </html>

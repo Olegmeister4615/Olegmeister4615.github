@@ -14,24 +14,32 @@ Author URI: http://author.url
 form{
 	display: inline-block;
 }
-
+h1{
+	font-weight: normal;
+	font-size: 30px;
+	text-shadow: 0 1px 0 #eee;
+}
 body{
 	padding: 0;
 	zoom: 100%;
-	font-family: Arial;
+	font-family: "Arial";
 	background-image: url(../image/h.png);
-	background-size: 1600px 650px;
+	background-size: 100% 650px;
+
 	background-repeat: no-repeat;
 	background-position: center top;
 	
 
 
 }
+.shadow{
+	box-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
 a{
 	
 	display:inline-block;
 }
-#govno{
+#heading{
 	margin-top: 555px;
 	 
 }
@@ -207,12 +215,51 @@ a{
 }
 .main{
 	display: inline-block;
-	
+	position: relative;
 	width: 400px;
 	height: 312px;
 	background-color: #312a1e;
 
 }
+.sert-in-buy{
+	position: absolute;
+	bottom: 16px;
+	right: 34px;
+	
+}
+.sert-in-buy>img{
+	width: 170px;
+	height: 150px;
+	border-radius: 10px;
+}
+.sert-in-buy>span{
+	position: absolute;
+
+	width: 170px;
+	height: 150px;
+	border-radius: 10px;
+	background: rgba(50,50,50,.2);
+	color: #ddd;
+	transition-duration: .2s;
+}
+.sert-in-buy>span:hover{
+	background: rgba(50,50,50,0);
+	color: #fff;
+}
+.title-img{
+	display: inline-block;
+	padding: 10px 32px;
+	text-align: center;
+	background: rgba(50,50,50,.7);
+	position: absolute;
+	top: 50%;
+	left: 0;
+	
+	margin-top: -26px;
+	font-weight: bold;
+	
+}
+
 .main > img{
 	float: left;
 	border: 4px solid #CCC;
@@ -246,7 +293,7 @@ a{
 	font-weight: bold;
 	color: #ffcc00;
 }
-.main > a{
+.order{
 	display: inline-block;
 	float: left;
 	margin-top: 15px;
@@ -268,6 +315,8 @@ a{
 	font-size: 32px;	
 }
 .p3{
+	vertical-align: bottom;
+	
 	font-size: 14px;
 	font-weight: normal; 	
 }
@@ -291,6 +340,7 @@ a{
 	background:#414460;
 	color:#ccc;
 	font-size: 30px;
+
 }
 #txt{
 	width: 800px;
@@ -322,7 +372,7 @@ padding-bottom: 40px;
 }
 #delivery{
 	width: 900px;
-	margin: 0 auto;
+	margin:  auto;
 	margin-top: 60px;
 
 }
@@ -400,14 +450,18 @@ padding-bottom: 40px;
 }
 #tx{
 	width: 340px;
-	margin-top: 40px;
+	margin-top: 10px;
 	font-size: 20px;
 	line-height: 30px;
 	text-align: justify;
 }
+#tx>p:first-child{
+	text-align: center;
+	font-size: .95em;
+}
  #bar > img{
  	width: 70px;
- 	margin: 30px 135px;
+ 	margin: 15px 135px;
  }
  #bar > a{
  	text-decoration: none;
@@ -444,7 +498,7 @@ padding-bottom: 40px;
  #footer1{
  	
  	width: 900px;
- 	margin: 0 auto;
+ 	margin: 30px auto;
  }
  #container1{
  	display: inline-block;
@@ -492,7 +546,7 @@ padding-bottom: 40px;
 
  	display:inline-block;
  	float: right;
- 	margin-right: 60px;
+ 	margin-right: 10px;
  	width: 430px;
  	
  	margin-left: 20px;
